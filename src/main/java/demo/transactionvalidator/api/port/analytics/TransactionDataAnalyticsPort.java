@@ -2,7 +2,7 @@ package demo.transactionvalidator.api.port.analytics;
 
 import demo.transactionvalidator.api.application.analytics.AnalyticsAverageOnlineVO;
 
-public interface TransactionDataAnalytics {
+public interface TransactionDataAnalyticsPort {
 
     void createAvgOnline (AnalyticsAverageOnlineVO analyticsAverageOnlineVO);
 

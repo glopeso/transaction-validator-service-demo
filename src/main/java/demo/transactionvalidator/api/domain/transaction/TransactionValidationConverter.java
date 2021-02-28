@@ -1,9 +1,6 @@
-package demo.transactionvalidator.api.adapter.service.transaction.rules;
+package demo.transactionvalidator.api.domain.transaction;
 
 import demo.transactionvalidator.api.adapter.kafka.consumer.TransactionEventMessage;
-import demo.transactionvalidator.api.domain.transaction.StatusValidationType;
-import demo.transactionvalidator.api.domain.transaction.TransactionType;
-import demo.transactionvalidator.api.domain.transaction.TransactionValidation;
 
 public class TransactionValidationConverter {
 

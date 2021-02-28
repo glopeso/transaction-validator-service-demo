@@ -3,7 +3,7 @@ package demo.transactionvalidator.api.adapter.kafka.consumer;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import demo.transactionvalidator.api.port.transaction.TransactionValidatorService;
+import demo.transactionvalidator.api.port.transaction.TransactionValidatorPort;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +19,10 @@ public class TransactionConsumer {
 
     private static final String APPLICATION_GROUP_ID = "transaction-validator";
 
-    private TransactionValidatorService transactionValidatorService;
+    private TransactionValidatorPort transactionValidatorService;
 
     @Autowired
-    public TransactionConsumer (TransactionValidatorService transactionValidatorService) {
+    public TransactionConsumer (TransactionValidatorPort transactionValidatorService) {
         this.transactionValidatorService = transactionValidatorService;
     }
 

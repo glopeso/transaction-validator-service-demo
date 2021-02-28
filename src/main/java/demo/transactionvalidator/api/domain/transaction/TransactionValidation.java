@@ -5,7 +5,7 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBIgnore;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBIndexHashKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
-import demo.transactionvalidator.api.port.transaction.TransactionValidationRuleService;
+import demo.transactionvalidator.api.port.transaction.TransactionValidationRulePort;
 
 @DynamoDBTable(tableName = "transaction-validator")
 public class TransactionValidation {
@@ -78,7 +78,7 @@ public class TransactionValidation {
     }
 
     @DynamoDBIgnore
-    public TransactionValidationRuleService getValidationRule () {
+    public TransactionValidationRulePort getValidationRule () {
         final TransactionType transactionType = TransactionType.fromValue(getTransactionType());
         return transactionType.getTransactionValidationRule();
     }

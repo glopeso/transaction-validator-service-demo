@@ -17,6 +17,9 @@ spring:
 transaction-event:
   topic: topic-transaction-created
 
+transaction-notify:
+  topic: topic-transaction-created
+
 amazon:
   dynamodb:
     endpoint: dynamodb.us-east-1.amazonaws.com

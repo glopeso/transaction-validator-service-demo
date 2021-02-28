@@ -12,7 +12,7 @@ import demo.transactionvalidator.api.adapter.kafka.consumer.TransactionEventMess
 import demo.transactionvalidator.api.domain.transaction.StatusValidationType;
 import demo.transactionvalidator.api.domain.transaction.TransactionType;
 import demo.transactionvalidator.api.domain.transaction.TransactionValidation;
-import demo.transactionvalidator.api.port.analytics.TransactionDataAnalytics;
+import demo.transactionvalidator.api.port.analytics.TransactionDataAnalyticsPort;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -23,14 +23,14 @@ import org.mockito.MockitoAnnotations;
 public class MobileBanKValidationRuleServiceAdapterTest {
 
     @Mock
-    private TransactionDataAnalytics transactionDataAnalytics;
+    private TransactionDataAnalyticsPort transactionDataAnalytics;
 
     @InjectMocks
     private MobileBankValidationRuleServiceAdapter mobileBankValidationRuleServiceAdapter;
 
     @BeforeEach
     public void setUp () {
-        MockitoAnnotations.initMocks(this);
+        MockitoAnnotations.openMocks(this);
     }
 
     @Test

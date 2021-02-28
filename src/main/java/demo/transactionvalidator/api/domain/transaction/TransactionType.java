@@ -1,24 +1,20 @@
 package demo.transactionvalidator.api.domain.transaction;
 
-import demo.transactionvalidator.api.adapter.service.transaction.rules.AtmValidationRuleServiceAdpater;
 import demo.transactionvalidator.api.adapter.service.transaction.rules.CreditCardValidationRuleServiceAdapter;
 import demo.transactionvalidator.api.adapter.service.transaction.rules.MobileBankValidationRuleServiceAdapter;
-import demo.transactionvalidator.api.adapter.service.transaction.rules.TransferValidationRuleServiceAdapter;
-import demo.transactionvalidator.api.port.transaction.TransactionValidationRuleService;
+import demo.transactionvalidator.api.port.transaction.TransactionValidationRulePort;
 
 public enum TransactionType {
     CREDIT_CARD(new CreditCardValidationRuleServiceAdapter()),
-    ATM(new AtmValidationRuleServiceAdpater()),
-    TRANSFER(new TransferValidationRuleServiceAdapter()),
     MOBILE_BANK(new MobileBankValidationRuleServiceAdapter());
 
-    private TransactionValidationRuleService transactionValidationRule;
+    private TransactionValidationRulePort transactionValidationRule;
 
-    TransactionType (TransactionValidationRuleService transactionValidationRule) {
+    TransactionType (TransactionValidationRulePort transactionValidationRule) {
         this.transactionValidationRule = transactionValidationRule;
     }
 
-    public TransactionValidationRuleService getTransactionValidationRule () {
+    public TransactionValidationRulePort getTransactionValidationRule () {
         return transactionValidationRule;
     }
 

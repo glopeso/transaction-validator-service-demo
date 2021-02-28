@@ -6,16 +6,17 @@ import java.util.List;
 import demo.transactionvalidator.api.adapter.kafka.consumer.TransactionEventMessage;
 import demo.transactionvalidator.api.domain.transaction.StatusValidationType;
 import demo.transactionvalidator.api.domain.transaction.TransactionValidation;
-import demo.transactionvalidator.api.port.analytics.TransactionDataAnalytics;
-import demo.transactionvalidator.api.port.transaction.TransactionValidationRuleService;
+import demo.transactionvalidator.api.domain.transaction.TransactionValidationConverter;
+import demo.transactionvalidator.api.port.analytics.TransactionDataAnalyticsPort;
+import demo.transactionvalidator.api.port.transaction.TransactionValidationRulePort;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class MobileBankValidationRuleServiceAdapter implements TransactionValidationRuleService {
+public class MobileBankValidationRuleServiceAdapter implements TransactionValidationRulePort {
 
     @Autowired
-    private TransactionDataAnalytics transactionDataAnalytics;
+    private TransactionDataAnalyticsPort transactionDataAnalytics;
 
     @Override
     public List<TransactionValidation> validate (final TransactionEventMessage transactionValidation) {

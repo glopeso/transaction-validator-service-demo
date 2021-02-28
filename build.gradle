@@ -24,12 +24,19 @@ dependencies {
     implementation 'org.springframework.kafka:spring-kafka'
     implementation 'com.github.derjust:spring-data-dynamodb:5.1.0'
     implementation 'com.amazonaws:aws-java-sdk-dynamodb:1.11.964'
+    implementation("org.apache.commons:commons-lang3:3.7")
+
+    compileOnly("org.projectlombok:lombok:1.18.4")
+    annotationProcessor("org.projectlombok:lombok:1.18.4")
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.kafka:spring-kafka-test'
     testRuntime 'org.junit.jupiter:junit-jupiter-engine:5.4.2'
     testRuntime 'org.junit.jupiter:junit-jupiter-api:5.5.2'
     testRuntime 'org.junit.vintage:junit-vintage-engine:5.2.0'
+
+    testCompileOnly("org.projectlombok:lombok:1.18.4")
+    testAnnotationProcessor("org.projectlombok:lombok:1.18.4")
 }
 
 dependencyManagement {

@@ -1,6 +1,8 @@
 package demo.transactionvalidator.api.application.analytics;
 
-import demo.transactionvalidator.api.port.analytics.TransactionDataAnalytics;
+import javax.validation.Valid;
+
+import demo.transactionvalidator.api.port.analytics.TransactionDataAnalyticsPort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,15 +14,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/transaction-data-analytics")
 public class AnalyticsTransactionController {
 
-    private TransactionDataAnalytics transactionDataAnalytics;
+    private TransactionDataAnalyticsPort transactionDataAnalytics;
 
     public AnalyticsTransactionController (
-            final TransactionDataAnalytics transactionDataAnalytics) {
+            final TransactionDataAnalyticsPort transactionDataAnalytics) {
         this.transactionDataAnalytics = transactionDataAnalytics;
     }
 
     @PostMapping
-    public ResponseEntity<Void> createAvgOnlineByCustomer (@RequestBody AnalyticsAverageOnlineVO avg) {
+    public ResponseEntity<Void> createAvgOnlineByCustomer (@RequestBody @Valid final AnalyticsAverageOnlineVO avg) {
         transactionDataAnalytics.createAvgOnline(avg);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }

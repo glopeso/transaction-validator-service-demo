@@ -5,12 +5,12 @@ import java.util.Optional;
 import demo.transactionvalidator.api.adapter.repository.analytics.AverageOnlineRepository;
 import demo.transactionvalidator.api.application.analytics.AnalyticsAverageOnlineVO;
 import demo.transactionvalidator.api.domain.analytics.AverageOnline;
-import demo.transactionvalidator.api.port.analytics.TransactionDataAnalytics;
+import demo.transactionvalidator.api.port.analytics.TransactionDataAnalyticsPort;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class TransactionDataAnalyticsAdapter implements TransactionDataAnalytics {
+public class TransactionDataAnalyticsAdapter implements TransactionDataAnalyticsPort {
 
     private AverageOnlineRepository averageOnlineRepository;
 

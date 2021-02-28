@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 @Component
 public class TransactionProducer {
 
-    @Value("${transaction-event.topic}")
+    @Value("${transaction-notify.topic}")
     private String transactionEventTopic;
 
     private final KafkaTemplate kafkaTemplate;
