@@ -80,7 +80,8 @@ Vincula um customerID em um valor de média de gastos em compras online, caso as
 
  ```json
    {
-     "customerId":  "123456789"
+     "customerId":  "123456789",
+    "avg": 100.00
    }
  ```         
  
