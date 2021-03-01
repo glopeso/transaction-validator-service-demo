@@ -4,6 +4,7 @@ import java.util.List;
 
 import demo.transactionvalidator.api.adapter.kafka.consumer.TransactionEventMessage;
 import demo.transactionvalidator.api.adapter.repository.transaction.TransactionValidationRepository;
+import demo.transactionvalidator.api.adapter.service.transaction.rules.TransactionRulesStrategyFactory;
 import demo.transactionvalidator.api.domain.transaction.TransactionType;
 import demo.transactionvalidator.api.domain.transaction.TransactionValidation;
 import demo.transactionvalidator.api.port.transaction.NotificationFraudPort;
@@ -17,19 +18,23 @@ public class TransactionValidatorServiceAdapter implements TransactionValidatorP
 
     private TransactionValidationRepository transactionValidationRepository;
     private NotificationFraudPort notificationFraudPort;
+    private TransactionRulesStrategyFactory transactionRulesStrategyFactory;
 
     @Autowired
-    public TransactionValidatorServiceAdapter (final TransactionValidationRepository transactionValidationRepository, final
-            NotificationFraudPort notificationFraudPort) {
+    public TransactionValidatorServiceAdapter (
+            final TransactionValidationRepository transactionValidationRepository,
+            final NotificationFraudPort notificationFraudPort,
+            final TransactionRulesStrategyFactory transactionRulesStrategyFactory) {
         this.transactionValidationRepository = transactionValidationRepository;
         this.notificationFraudPort = notificationFraudPort;
+        this.transactionRulesStrategyFactory = transactionRulesStrategyFactory;
     }
 
     @Override
     public void createTransactionValidation (final TransactionEventMessage tem) {
-        final TransactionValidationRulePort transactionValidationRule = TransactionType
-                .fromValue(tem.getTransactionType()).getTransactionValidationRule();
-        final List<TransactionValidation> validations = transactionValidationRule.validate(tem);
+        final TransactionValidationRulePort strategy = transactionRulesStrategyFactory
+                .findStrategy(TransactionType.fromValue(tem.getTransactionType()));
+        final List<TransactionValidation> validations = strategy.validate(tem);
         validations.forEach(validation -> transactionValidationRepository.save(validation));
         notificationFraudPort.notify(validations);
 

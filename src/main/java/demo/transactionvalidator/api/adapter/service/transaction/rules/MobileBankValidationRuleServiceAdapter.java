@@ -5,6 +5,7 @@ import java.util.List;
 
 import demo.transactionvalidator.api.adapter.kafka.consumer.TransactionEventMessage;
 import demo.transactionvalidator.api.domain.transaction.StatusValidationType;
+import demo.transactionvalidator.api.domain.transaction.TransactionType;
 import demo.transactionvalidator.api.domain.transaction.TransactionValidation;
 import demo.transactionvalidator.api.domain.transaction.TransactionValidationConverter;
 import demo.transactionvalidator.api.port.analytics.TransactionDataAnalyticsPort;
@@ -30,6 +31,11 @@ public class MobileBankValidationRuleServiceAdapter implements TransactionValida
         }
 
         return transactionValidations;
+    }
+
+    @Override
+    public TransactionType getTransactionType () {
+        return TransactionType.MOBILE_BANK;
     }
 
     private void checkValidationAverageByCustomer (final TransactionEventMessage transactionValidation,

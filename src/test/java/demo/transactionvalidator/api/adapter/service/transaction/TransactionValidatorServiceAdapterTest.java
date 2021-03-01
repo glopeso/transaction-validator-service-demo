@@ -1,0 +1,65 @@
+package demo.transactionvalidator.api.adapter.service.transaction;
+
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyList;
+import static org.mockito.Mockito.atMost;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
+import demo.transactionvalidator.api.adapter.kafka.consumer.TransactionEventMessage;
+import demo.transactionvalidator.api.adapter.repository.transaction.TransactionValidationRepository;
+import demo.transactionvalidator.api.adapter.service.transaction.rules.MobileBankValidationRuleServiceAdapter;
+import demo.transactionvalidator.api.adapter.service.transaction.rules.TransactionRulesStrategyFactory;
+import demo.transactionvalidator.api.domain.transaction.TransactionType;
+import demo.transactionvalidator.api.port.transaction.NotificationFraudPort;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+
+public class TransactionValidatorServiceAdapterTest {
+
+    @Mock
+    private TransactionValidationRepository transactionValidationRepository;
+
+    @Mock
+    private NotificationFraudPort notificationFraudPort;
+
+    @Mock
+    private MobileBankValidationRuleServiceAdapter mobileBankValidationRuleServiceAdapter;
+
+    @Mock
+    private TransactionRulesStrategyFactory transactionRulesStrategyFactory;
+
+    @InjectMocks
+    private TransactionValidatorServiceAdapter transactionValidatorServiceAdapter;
+
+    @BeforeEach
+    public void setUp () {
+        MockitoAnnotations.openMocks(this);
+    }
+
+    @Test
+    public void checkCallProcess () {
+        when(transactionRulesStrategyFactory.findStrategy(any()))
+                .thenReturn(mobileBankValidationRuleServiceAdapter);
+
+        transactionValidatorServiceAdapter.createTransactionValidation(getTransactionEventMessage());
+
+        verify(transactionValidationRepository, atMost(1)).save(any());
+        verify(notificationFraudPort, atMost(1)).notify(anyList());
+    }
+
+    private TransactionEventMessage getTransactionEventMessage () {
+        final TransactionEventMessage tem = new TransactionEventMessage();
+        tem.setCustomerSendId("12345");
+        tem.setTransactionValue(100L);
+        tem.setTransactionDate(10000L);
+        tem.setTransactionType(TransactionType.MOBILE_BANK.name());
+        tem.setCustomerReceivedId("5000");
+        tem.setTransactionId("1000000");
+        return tem;
+    }
+
+}

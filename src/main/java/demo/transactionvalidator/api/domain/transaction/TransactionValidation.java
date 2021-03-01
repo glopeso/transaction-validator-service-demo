@@ -2,10 +2,8 @@ package demo.transactionvalidator.api.domain.transaction;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBIgnore;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBIndexHashKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
-import demo.transactionvalidator.api.port.transaction.TransactionValidationRulePort;
 
 @DynamoDBTable(tableName = "transaction-validator")
 public class TransactionValidation {
@@ -75,12 +73,6 @@ public class TransactionValidation {
 
     public void setStatusValidationType (final String statusValidationType) {
         this.statusValidationType = statusValidationType;
-    }
-
-    @DynamoDBIgnore
-    public TransactionValidationRulePort getValidationRule () {
-        final TransactionType transactionType = TransactionType.fromValue(getTransactionType());
-        return transactionType.getTransactionValidationRule();
     }
 
     @Override
