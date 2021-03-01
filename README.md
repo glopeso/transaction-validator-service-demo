@@ -4,6 +4,10 @@ Demonstração de serviço de validação de transação para identificação de
 ### Preparando o ambiente de desenvolvimento
 Siga os passos abaixo antes de iniciar o projeto localmente.
 
+- Versão JDK:
+
+    **JDK 1.11**
+
 Pelas inumeras vantagens que container nos oferece para agilizar o desenvolvimento e validação do projeto antes de chegarmos no ambiente de produção, optamos por usar o Kafka e o DynamoDB em Docker.
  
 - Configurando Kafka em docker local
