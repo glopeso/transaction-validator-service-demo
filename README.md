@@ -1,4 +1,9 @@
-# Getting Started
+### Preparando o ambiente de desenvolvimento
+Siga os passos abaixo antes de iniciar o projeto localmente.
+
+Pelas inumeras vantagens que container nos oferece para agilizar o desenvolvimento e validação do projeto antes de produção optamos por usar o Kafka e o DynamoDB em Docker.
+ 
+A nível de desenvolvimento optamos por utilizar o Kafka em Docker 
 
 Para não precisar criar tabelas em uma ambiente amazon e pagar por isso, optamos por utilizar o DynamoDB em Docker seguindo a documentação abaixo:
 
@@ -14,14 +19,14 @@ Após criar e subir a imagem Docker do DynamoDB, crie as tabelas via lia de coma
  
  
 
-### Reference Documentation
-For further reference, please consider the following sections:
+### Documentação de referência
+Por favor considere as documentações abaixo para seguir as melhores praticas:
 
-* [Official Gradle documentation](https://docs.gradle.org)
-* [Spring Boot Gradle Plugin Reference Guide](https://docs.spring.io/spring-boot/docs/2.4.3/gradle-plugin/reference/html/)
-* [Create an OCI image](https://docs.spring.io/spring-boot/docs/2.4.3/gradle-plugin/reference/html/#build-image)
+* [Documentação oficial Gradle](https://docs.gradle.org)
+* [Spring Boot Gradle Plugin](https://docs.spring.io/spring-boot/docs/2.4.3/gradle-plugin/reference/html/)
 * [Spring for Apache Kafka](https://docs.spring.io/spring-boot/docs/2.4.3/reference/htmlsingle/#boot-features-kafka)
 * [Spring Data JPA](https://docs.spring.io/spring-boot/docs/2.4.3/reference/htmlsingle/#boot-features-jpa-and-spring-data)
+* [DynamoDB SDK](https://docs.aws.amazon.com/sdk-for-java/latest/developer-guide/examples-dynamodb.html)
 
 ### Guides
 The following guides illustrate how to use some features concretely:
