@@ -28,7 +28,7 @@ Pelas inumeras vantagens que container nos oferece para agilizar o desenvolvimen
   
     ```docker-compose exec kafka  kafka-topics --create --topic topic-transaction-validation-notify --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:2181``` 
 
-- Confiurando DynamoDB em docker local
+- Configurando DynamoDB em docker local
 
     Para não precisar criar tabelas em uma ambiente amazon e pagar por isso, optamos por utilizar o DynamoDB em Docker seguindo a documentação abaixo:
 
@@ -42,7 +42,7 @@ Pelas inumeras vantagens que container nos oferece para agilizar o desenvolvimen
         ```./gradlew build``` 
 
 ### Regras de validações por produto
-Por padrão toda vez que o consumer do Kafka receber um evento de criação de transação o serviço realizará as seguintes validações (A nível de demonstração estamos validando transações de cartão de crédito e Mobile):
+Por padrão toda vez que o consumer do Kafka receber um evento de criação de transação, o serviço realizará as seguintes validações (A nível de demonstração estamos validando transações de cartão de crédito e Mobile):
  - Transação de cartão de crédito TransactionType.CREDIT_CARD: 
     O sistema verifica se o remetente e receptor estão na lista de restrição, basicamente para simular por exemplo um serviço de KYC ou validações de lavagem de dinheiro e terrorismo
      (A nível de teste foi criada uma API onde é possível inserir os IDS dos customers para criar esse cenário de fraude)
@@ -51,11 +51,81 @@ Por padrão toda vez que o consumer do Kafka receber um evento de criação de t
     (A nível de teste foi criada uma API onde é possível vincular o customerID e média de gastos para conseguir simular)
  
 ### APIs de simulação de integração
+ As APIS abaixo foram criadas para simular integrações com serviços externos, no cenário de produção essas integrações se dariam por protocolo REST ou alguma outra integração sistemica.
+ 
+ ### POST
+ [/customer-restriction](#/customer-restriction)
+ 
+ ### POST
+ [/transaction-data-analytics](#/transaction-data-analytics)
 
+#### POST /customer-restriction
+Vincula um customerID na lista de restrição, caso esteja nessa lista as transações realizadas pelo mesmo serão consideradas como fraude.
 
+**Response** 201 OK
+```json
+  {
+    "customerId":  "123456789"
+  }
+```         
 
-### API para backoffice          
-          
+#### POST /transaction-data-analytics
+Vincula um customerID em um valor de média de gastos em compras online, caso as transações realizadas pelo remetente ultrapassem esse limite será considerado fraude.
+
+**Response** 201 OK
+
+ ```json
+   {
+     "customerId":  "123456789"
+   }
+ ```         
+ 
+### API Dados de validações realizadas
+A API abaixo fornece todas as validações realizadas em transações processadas recebidas nos eventos do Kafka. (A nível de demonstração estamos retornando todas as validações):
+
+ ### GET
+ [/transaction-validator](#/transaction-validator)
+ 
+ #### GET /transaction-validator
+  **Response** 200 OK
+```json
+  [
+    {
+      "transactionId": "99999",
+      "customerSendId": "11111",
+      "customerReceivedId": "22222",
+      "transactionDate": 1614454600,
+      "transactionType": "CREDIT_CARD",
+      "statusValidationType": "SUCCESS"
+    },
+    {
+      "transactionId": "88888",
+      "customerSendId": "777",
+      "customerReceivedId": "66666",
+      "transactionDate": 1614454600,
+      "transactionType": "MOBILE",
+      "statusValidationType": "HIGHER_AVERAGE_ONLINE"
+    },
+    {
+      "transactionId": "555555",
+      "customerSendId": "9999",
+      "customerReceivedId": "333333",
+      "transactionDate": 1614454600,
+      "transactionType": "MOBILE",
+      "statusValidationType": "RECEIVER_ON_RESTRICTED_LIST"
+    },
+    {
+      "transactionId": "66666",
+      "customerSendId": "0101010",
+      "customerReceivedId": "020202",
+      "transactionDate": 1614454600,
+      "transactionType": "MOBILE",
+      "statusValidationType": "SENDER_ON_RESTRICTED_LIST"
+    }
+  ]
+```   
+ 
+     
  
 
 #### Documentação de referência
