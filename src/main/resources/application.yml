@@ -18,12 +18,12 @@ transaction-event:
   topic: topic-transaction-created
 
 transaction-notify:
-  topic: topic-transaction-created
+  topic: topic-transaction-validation-notify
 
 amazon:
   dynamodb:
-    endpoint: dynamodb.us-east-1.amazonaws.com
+    endpoint: http://localhost:8000/
     region: us-east-1
   aws:
-    accesskey: AKIAZ4FAHY6SLCHGXZMD
-    secretkey: xSl8NbFK/A5vaEPkIx5u3UNY87e7rv9U2ueEikVQu
+    accesskey: 12345
+    secretkey: 12345

@@ -2,17 +2,24 @@ package demo.transactionvalidator.api.domain.transaction;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBIndexHashKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@DynamoDBTable(tableName = "transaction-validator")
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@DynamoDBTable(tableName = TransactionValidation.TABLE_NAME)
 public class TransactionValidation {
+
+    public static final String TABLE_NAME = "transaction-validator";
 
     // Partition key
     @DynamoDBHashKey(attributeName = "transaction_id")
     private String transactionId;
 
-    @DynamoDBIndexHashKey(attributeName = "statusValidationType")
+    @DynamoDBAttribute(attributeName = "statusValidationType")
     private String statusValidationType;
 
     @DynamoDBAttribute(attributeName = "transactionType")
@@ -27,63 +34,4 @@ public class TransactionValidation {
     @DynamoDBAttribute(attributeName = "transactionDate")
     private String transactionDate;
 
-    public String getTransactionId () {
-        return transactionId;
-    }
-
-    public void setTransactionId (final String transactionId) {
-        this.transactionId = transactionId;
-    }
-
-    public String getTransactionType () {
-        return transactionType;
-    }
-
-    public void setTransactionType (final String transactionType) {
-        this.transactionType = transactionType;
-    }
-
-    public String getCustomerSendId () {
-        return customerSendId;
-    }
-
-    public void setCustomerSendId (final String customerSendId) {
-        this.customerSendId = customerSendId;
-    }
-
-    public String getCustomerReceivedId () {
-        return customerReceivedId;
-    }
-
-    public void setCustomerReceivedId (final String customerReceivedId) {
-        this.customerReceivedId = customerReceivedId;
-    }
-
-    public String getTransactionDate () {
-        return transactionDate;
-    }
-
-    public void setTransactionDate (final String transactionDate) {
-        this.transactionDate = transactionDate;
-    }
-
-    public String getStatusValidationType () {
-        return statusValidationType;
-    }
-
-    public void setStatusValidationType (final String statusValidationType) {
-        this.statusValidationType = statusValidationType;
-    }
-
-    @Override
-    public String toString () {
-        return "TransactionValidation"
-                + " [transactionId=" + getTransactionId() +
-                ",transactionType=" + getTransactionType()
-                + ",customerSendId=" + getCustomerSendId()
-                + "customerReceivedId=" + getCustomerReceivedId()
-                + "transactionDate=" + getTransactionDate() +
-                "statusValidationType=" + getStatusValidationType() +
-                "]";
-    }
 }

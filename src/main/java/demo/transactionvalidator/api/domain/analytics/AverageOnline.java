@@ -4,8 +4,10 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 
-@DynamoDBTable(tableName = "analytics-avg-customer")
+@DynamoDBTable(tableName = AverageOnline.TABLE_NAME)
 public class AverageOnline {
+
+    public static final String TABLE_NAME = "analytics-avg-customer";
 
     // Partition key
     @DynamoDBHashKey(attributeName = "customer_id")
