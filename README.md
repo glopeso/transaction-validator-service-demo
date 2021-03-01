@@ -1,6 +1,18 @@
 # Getting Started
 
+Para não precisar criar tabelas em uma ambiente amazon e pagar por isso, optamos por utilizar o DynamoDB em Docker seguindo a documentação abaixo:
 
+* [Executando DynamoDB Local](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.DownloadingAndRunning.html)
+
+Após criar e subir a imagem Docker do DynamoDB, crie as tabelas via lia de comando:
+
+- Tabela que contem as informações de clientes com restrições ex (Lista de terroristas):
+
+`aws dynamodb --endpoint-url http://localhost:8000 create-table --table-name customer-restriction \
+ --attribute-definitions AttributeName=customer_id,AttributeType=S --key-schema AttributeName=customer_id,KeyType=HASH \
+ --provisioned-throughput ReadCapacityUnits=5,WriteCapacityUnits=5`
+ 
+ 
 
 ### Reference Documentation
 For further reference, please consider the following sections:
