@@ -34,4 +34,7 @@ public class TransactionValidation {
     @DynamoDBAttribute(attributeName = "transactionDate")
     private String transactionDate;
 
+    @DynamoDBAttribute(attributeName = "transactionValidationDate")
+    private String transactionValidationDate;
+
 }

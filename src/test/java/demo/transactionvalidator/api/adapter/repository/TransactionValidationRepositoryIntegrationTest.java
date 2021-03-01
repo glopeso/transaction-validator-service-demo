@@ -75,6 +75,7 @@ public class TransactionValidationRepositoryIntegrationTest {
         tem.setCustomerReceivedId("5000");
         tem.setTransactionId("1000000");
         tem.setStatusValidationType(StatusValidationType.SUCCESS.name());
+        tem.setTransactionValidationDate("12121212121");
         return tem;
     }
 }

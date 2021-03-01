@@ -43,6 +43,7 @@ public class NotificationFraudAdapterTest {
         tem.setTransactionType(TransactionType.MOBILE_BANK.name());
         tem.setCustomerReceivedId("5000");
         tem.setTransactionId("1000000");
+        tem.setTransactionValidationDate("12121212121");
         return tem;
     }
 
