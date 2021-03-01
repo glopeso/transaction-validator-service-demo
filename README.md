@@ -100,7 +100,8 @@ A API abaixo fornece todas as validações realizadas em transações processada
       "customerReceivedId": "22222",
       "transactionDate": 1614454600,
       "transactionType": "CREDIT_CARD",
-      "statusValidationType": "SUCCESS"
+      "statusValidationType": "SUCCESS",
+      "transactionValidationDate": 1212121212
     },
     {
       "transactionId": "88888",
@@ -108,7 +109,8 @@ A API abaixo fornece todas as validações realizadas em transações processada
       "customerReceivedId": "66666",
       "transactionDate": 1614454600,
       "transactionType": "MOBILE",
-      "statusValidationType": "HIGHER_AVERAGE_ONLINE"
+      "statusValidationType": "HIGHER_AVERAGE_ONLINE",
+      "transactionValidationDate": 1212121212
     },
     {
       "transactionId": "555555",
@@ -116,7 +118,8 @@ A API abaixo fornece todas as validações realizadas em transações processada
       "customerReceivedId": "333333",
       "transactionDate": 1614454600,
       "transactionType": "MOBILE",
-      "statusValidationType": "RECEIVER_ON_RESTRICTED_LIST"
+      "statusValidationType": "RECEIVER_ON_RESTRICTED_LIST",
+      "transactionValidationDate": 1212121212
     },
     {
       "transactionId": "66666",
@@ -124,7 +127,8 @@ A API abaixo fornece todas as validações realizadas em transações processada
       "customerReceivedId": "020202",
       "transactionDate": 1614454600,
       "transactionType": "MOBILE",
-      "statusValidationType": "SENDER_ON_RESTRICTED_LIST"
+      "statusValidationType": "SENDER_ON_RESTRICTED_LIST",
+      "transactionValidationDate": 1212121212
     }
   ]
 ```   
