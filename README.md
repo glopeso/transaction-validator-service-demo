@@ -1,4 +1,4 @@
-# transaction-validation-service
+# transaction-validation-service-demo
 Demonstração de serviço de validação de transação para identificação de fraudes.
 
 ### Preparando o ambiente de desenvolvimento
